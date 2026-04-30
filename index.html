@@ -220,9 +220,12 @@ button, input, select, textarea {
 }
 
 .hero-h1 {
-  font-size: clamp(40px, 5.4vw, 72px);
+  font-size: clamp(28px, 5.4vw, 72px);
   margin: 18px 0 22px;
   color: var(--ink);
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  hyphens: none;
 }
 .hero-h1 .marker {
   display: inline-block;
@@ -1472,6 +1475,108 @@ button, input, select, textarea {
   .tape-track { animation: none; }
   .btn-primary::after { animation: none; }
 }
+
+/* =====================================================================
+   MOBILE GUARDS — финальные правила для узких экранов (<=480 / <=380)
+   Эти правила работают ПОСЛЕ всех остальных и гарантируют, что
+   на любом узком экране ничего не торчит и не обрезается.
+   ===================================================================== */
+
+@media (max-width: 480px) {
+  /* уменьшаем боковой padding всего контейнера */
+  :root { --gutter: 16px; }
+
+  /* запас от обрезки длинных слов */
+  h1, h2, h3, p, li {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  /* hero — полностью адаптивно */
+  .hero-h1 { font-size: 30px; }
+  .hero-h1 .marker {
+    box-shadow: 4px 4px 0 var(--ink);
+    padding: 0 8px;
+    margin: 4px 0 0;
+  }
+  .hero-lede { font-size: 16px; max-width: 100%; }
+
+  /* кнопки — на всю ширину, по одной в строке */
+  .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+  .hero-actions .btn { width: 100%; padding: 15px 22px; font-size: 15px; }
+
+  /* финальный CTA — кнопки тоже полной ширины */
+  .final-cta-actions { flex-direction: column; align-items: stretch; }
+  .final-cta-actions .btn { width: 100%; }
+  .final-cta h2 { font-size: 30px; }
+  .final-cta p { font-size: 16px; }
+  .final-cta-contacts { flex-direction: column; gap: 14px; align-items: flex-start; text-align: left; }
+  .final-cta-contact { width: 100%; }
+
+  /* блочные h2 во всех секциях */
+  .section-head h2,
+  .calc-head h2,
+  .trust-head h2,
+  .delivery-info h2 { font-size: 26px; }
+
+  /* hero price-card — поджимаем падинги и маркер */
+  .price-card { padding: 22px 22px 20px; transform: none; }
+  .price-card-num { font-size: 48px; }
+  .price-card-tape { font-size: 9px; padding: 5px 12px; }
+
+  /* шапка — компактнее */
+  .header-inner { padding: 10px 0; gap: 10px; }
+  .header-cta { padding: 9px 14px; font-size: 13px; }
+  .brand-name { font-size: 16px; }
+  .brand-mark { width: 32px; height: 32px; }
+
+  /* индустриальная лента — тоньше */
+  .tape { padding: 16px 0; margin-top: 56px; }
+  .tape-track { font-size: 14px; gap: 32px; }
+  .tape-track span::after { width: 6px; height: 6px; }
+
+  /* trust — числа поменьше, padding меньше */
+  .trust-num { font-size: 32px; }
+  .trust-card { padding: 18px 14px; }
+
+  /* калькулятор */
+  .calc-form, .calc-result { padding: 22px 18px; }
+  .calc-grade-name { font-size: 13px; }
+  .calc-grade-desc { font-size: 11px; }
+  .calc-volume-input { font-size: 20px; }
+  .calc-volume-btn { width: 44px; font-size: 20px; }
+  .calc-result-total { font-size: 38px; }
+  .calc-breakdown { font-size: 13px; }
+
+  /* прайс — еще лаконичнее */
+  .price-table { padding: 12px; }
+  .price-row { padding: 14px 4px; }
+  .price-grade { font-size: 16px; }
+  .price-grade-desc { font-size: 12px; }
+  .price-cell { font-size: 17px; }
+
+  /* delivery zones - tariff внизу */
+  .delivery-zone { padding: 12px 14px; }
+
+  /* условия и шаги — компактнее */
+  .terms-card { padding: 22px 18px; }
+  .terms-card h3 { font-size: 18px; }
+  .step h3 { font-size: 18px; }
+
+  /* footer */
+  .footer-grid { gap: 24px; }
+}
+
+/* iPhone SE и другие особо узкие экраны */
+@media (max-width: 360px) {
+  :root { --gutter: 14px; }
+  .hero-h1 { font-size: 26px; }
+  .hero-h1 .marker { font-size: 0.92em; }
+  .price-card-num { font-size: 42px; }
+  .header-cta { padding: 8px 12px; font-size: 12px; }
+  .brand-sub { display: none; }
+  .calc-result-total { font-size: 32px; }
+}
 </style>
 </head>
 <body>
@@ -1514,7 +1619,7 @@ button, input, select, textarea {
       <div>
         <span class="eyebrow reveal in">Коммерческое предложение · Омск</span>
         <h1 class="hero-h1 display reveal" data-delay="1">
-          Бетон от<br>производителя&nbsp;— <span class="marker">от 5 700 ₽/м³</span>
+          Бетон от производителя — <span class="marker">от 5&nbsp;700&nbsp;₽/м³</span>
         </h1>
         <p class="hero-lede reveal" data-delay="2">
           Свой завод, собственный парк миксеров и отгрузка <strong>7 дней в неделю</strong>.
