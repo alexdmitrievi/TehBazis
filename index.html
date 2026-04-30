@@ -56,7 +56,7 @@
 * { box-sizing: border-box; }
 *::selection { background: var(--warn); color: var(--ink); }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
 body {
   margin: 0;
   font-family: 'Manrope', system-ui, -apple-system, sans-serif;
@@ -68,6 +68,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  width: 100%;
 }
 
 img, svg { display: block; max-width: 100%; }
@@ -310,6 +311,7 @@ button, input, select, textarea {
   border-radius: var(--radius-xl);
   padding: 36px 36px 30px;
   overflow: hidden;
+  isolation: isolate;
   transform: rotate(1.2deg);
   box-shadow: var(--shadow-lg);
 }
@@ -392,6 +394,18 @@ button, input, select, textarea {
   .hero { padding: 32px 0 0; }
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .price-card { transform: rotate(0.5deg); padding: 28px 28px 24px; }
+  .price-card-tape {
+    /* мобильная версия: не диагональная плашка, а простой бэйдж сверху */
+    position: static;
+    transform: none;
+    display: inline-block;
+    padding: 6px 14px;
+    margin-bottom: 14px;
+    border-radius: 999px;
+    font-size: 10px;
+    box-shadow: none;
+  }
+  .price-card-eyebrow { margin-top: 0; }
 }
 
 /* =====================================================================
@@ -500,7 +514,9 @@ button, input, select, textarea {
 @media (max-width: 920px) {
   .trust { padding: 60px 0 40px; }
   .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .trust-num { font-size: 42px; }
+  .trust-num { font-size: 36px; }
+  .trust-card { padding: 22px 18px; }
+  .trust-card::before { display: none; }
 }
 
 /* =====================================================================
@@ -837,7 +853,10 @@ button, input, select, textarea {
   color: var(--text); font-size: 17px; margin: 0;
 }
 
-@media (max-width: 920px) { .section { padding: 70px 0; } }
+@media (max-width: 920px) {
+  .section { padding: 56px 0; }
+  .section-head { margin-bottom: 36px; }
+}
 
 /* =====================================================================
    УТП
@@ -1123,6 +1142,24 @@ button, input, select, textarea {
 @media (max-width: 920px) {
   .delivery-grid { grid-template-columns: 1fr; gap: 32px; }
   .delivery-map { max-width: 480px; margin: 0 auto; }
+}
+@media (max-width: 480px) {
+  .delivery-zone {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "dot   info"
+      ".     tariff";
+    column-gap: 12px;
+    row-gap: 8px;
+    padding: 14px 16px;
+  }
+  .delivery-zone > .delivery-zone-dot { grid-area: dot; align-self: start; margin-top: 6px; }
+  .delivery-zone > div { grid-area: info; }
+  .delivery-zone > .delivery-zone-tariff {
+    grid-area: tariff;
+    text-align: right;
+    align-self: end;
+  }
 }
 
 /* =====================================================================
@@ -1818,7 +1855,7 @@ button, input, select, textarea {
           <circle cx="250" cy="250" r="9"  fill="#FFE600"/>
           <circle cx="250" cy="250" r="9"  fill="none" stroke="#0B1437" stroke-width="2"/>
           <text x="250" y="240" text-anchor="middle" font-family="Unbounded, sans-serif" font-weight="700" font-size="13" fill="#FFE600">ОМСК</text>
-          <text x="250" y="276" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="600" font-size="10" fill="rgba(255,255,255,0.6)">завод-производитель</text>
+          <text x="250" y="276" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="600" font-size="11" fill="rgba(255,255,255,0.65)">завод-производитель</text>
 
           <!-- города/точки доставки -->
           <g class="city">
@@ -1827,7 +1864,7 @@ button, input, select, textarea {
               <animate attributeName="r" values="5;13;5" dur="2.6s" repeatCount="indefinite"/>
               <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="2.6s" repeatCount="indefinite"/>
             </circle>
-            <text x="375" y="184" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Калачинск</text>
+            <text x="375" y="184" font-family="Manrope, sans-serif" font-weight="700" font-size="14" fill="#FFFFFF">Калачинск</text>
           </g>
 
           <g class="city">
@@ -1836,7 +1873,7 @@ button, input, select, textarea {
               <animate attributeName="r" values="5;13;5" dur="2.4s" repeatCount="indefinite" begin="0.3s"/>
               <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="2.4s" repeatCount="indefinite" begin="0.3s"/>
             </circle>
-            <text x="125" y="164" text-anchor="end" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Тюкалинск</text>
+            <text x="125" y="164" text-anchor="end" font-family="Manrope, sans-serif" font-weight="700" font-size="14" fill="#FFFFFF">Тюкалинск</text>
           </g>
 
           <g class="city">
@@ -1845,7 +1882,7 @@ button, input, select, textarea {
               <animate attributeName="r" values="5;13;5" dur="2.8s" repeatCount="indefinite" begin="0.6s"/>
               <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="2.8s" repeatCount="indefinite" begin="0.6s"/>
             </circle>
-            <text x="170" y="374" text-anchor="end" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Исилькуль</text>
+            <text x="170" y="374" text-anchor="end" font-family="Manrope, sans-serif" font-weight="700" font-size="14" fill="#FFFFFF">Исилькуль</text>
           </g>
 
           <g class="city">
@@ -1854,7 +1891,7 @@ button, input, select, textarea {
               <animate attributeName="r" values="5;13;5" dur="2.5s" repeatCount="indefinite" begin="0.9s"/>
               <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite" begin="0.9s"/>
             </circle>
-            <text x="390" y="344" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Большеречье</text>
+            <text x="390" y="344" font-family="Manrope, sans-serif" font-weight="700" font-size="14" fill="#FFFFFF">Большеречье</text>
           </g>
 
           <g class="city">
@@ -1863,13 +1900,13 @@ button, input, select, textarea {
               <animate attributeName="r" values="5;13;5" dur="2.7s" repeatCount="indefinite" begin="1.2s"/>
               <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="2.7s" repeatCount="indefinite" begin="1.2s"/>
             </circle>
-            <text x="300" y="104" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Тара</text>
+            <text x="300" y="104" font-family="Manrope, sans-serif" font-weight="700" font-size="14" fill="#FFFFFF">Тара</text>
           </g>
 
           <!-- подписи зон -->
-          <text x="250" y="345" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="10" fill="rgba(255,230,0,0.7)" letter-spacing="1.5">25 КМ</text>
-          <text x="250" y="405" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="10" fill="rgba(255,230,0,0.5)" letter-spacing="1.5">50 КМ</text>
-          <text x="250" y="465" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="10" fill="rgba(255,230,0,0.35)" letter-spacing="1.5">100+ КМ</text>
+          <text x="250" y="345" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="12" fill="rgba(255,230,0,0.7)" letter-spacing="1.5">25 КМ</text>
+          <text x="250" y="405" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="12" fill="rgba(255,230,0,0.5)" letter-spacing="1.5">50 КМ</text>
+          <text x="250" y="465" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="12" fill="rgba(255,230,0,0.4)" letter-spacing="1.5">100+ КМ</text>
         </svg>
       </div>
 
