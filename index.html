@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Бетон от производителя в Омске. От 5 700 ₽/м³. Паспорт качества на каждый рейс, отгрузка 7 дней в неделю.">
+<title>Бетон от производителя в Омске · ООО «ТехБазис» · от 5 700 ₽/м³</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================================
+   ДИЗАЙН-ТОКЕНЫ
+   ===================================================================== */
+:root {
+  /* брендовые цвета (из исходного КП) + индустриальный жёлтый акцент */
+  --navy:       #0B1437;
+  --navy-2:     #1A2A5A;
+  --ink:        #0A0E27;
+  --cobalt:     #2F5BFF;
+  --cobalt-d:   #1F47E0;
+  --cobalt-l:   #5B7FFF;
+
+  /* индустриальный жёлтый — главный конверсионный акцент */
+  --warn:       #FFE600;
+  --warn-d:     #F5D900;
+  --warn-l:     #FFF270;
+
+  /* нейтральные */
+  --white:      #FFFFFF;
+  --paper:      #F4F6FB;
+  --paper-2:    #ECF0F8;
+  --line:       #E1E6F0;
+  --line-2:     #C9D1E2;
+  --text:       #4B5169;
+  --mute:       #7A8099;
+
+  /* системные */
+  --shadow-sm:  0 1px 2px rgba(11, 20, 55, 0.04);
+  --shadow:     0 8px 24px rgba(11, 20, 55, 0.08);
+  --shadow-lg:  0 20px 60px rgba(11, 20, 55, 0.18);
+
+  --radius:     12px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+
+  --container:  1200px;
+  --gutter:     24px;
+}
+
+/* =====================================================================
+   БАЗА
+   ===================================================================== */
+* { box-sizing: border-box; }
+*::selection { background: var(--warn); color: var(--ink); }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--white);
+  font-feature-settings: 'cv11', 'ss01', 'ss02';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* типографика */
+.display {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+.display-2 {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  line-height: 1.05;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cobalt);
+}
+.eyebrow::before {
+  content: "";
+  width: 24px; height: 2px;
+  background: currentColor;
+}
+
+/* =====================================================================
+   ГРЕЙН-ТЕКСТУРА (через SVG в data URI)
+   ===================================================================== */
+.grain::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.6;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* =====================================================================
+   STICKY ШАПКА
+   ===================================================================== */
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0;
+  gap: 20px;
+}
+.brand {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+.brand-mark {
+  width: 38px; height: 38px;
+  flex-shrink: 0;
+}
+.brand-name { font-size: 18px; line-height: 1; }
+.brand-sub  {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--mute);
+  letter-spacing: 0.02em;
+  margin-top: 3px;
+}
+
+.nav {
+  display: flex; align-items: center; gap: 26px;
+}
+.nav a {
+  font-weight: 600; font-size: 14px;
+  color: var(--text);
+  transition: color .18s ease;
+}
+.nav a:hover { color: var(--cobalt); }
+
+.header-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--ink);
+  color: var(--warn);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 700; font-size: 14px;
+  transition: transform .15s ease, background .18s ease;
+}
+.header-cta:hover { background: var(--cobalt); color: var(--white); transform: translateY(-1px); }
+.header-cta svg { width: 14px; height: 14px; }
+
+@media (max-width: 920px) {
+  .nav { display: none; }
+  .brand-sub { display: none; }
+}
+
+/* =====================================================================
+   HERO
+   ===================================================================== */
+.hero {
+  position: relative;
+  background: linear-gradient(180deg, #FAFBFE 0%, #FFFFFF 100%);
+  padding: 56px 0 0;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -200px; right: -300px;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(47,91,255,0.10) 0%, transparent 60%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+}
+
+.hero-h1 {
+  font-size: clamp(40px, 5.4vw, 72px);
+  margin: 18px 0 22px;
+  color: var(--ink);
+}
+.hero-h1 .marker {
+  display: inline-block;
+  background: var(--warn);
+  padding: 0 10px;
+  margin: 0 -2px;
+  transform: rotate(-1deg);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.hero-h1 br + .marker { margin-top: 8px; }
+
+.hero-lede {
+  font-size: 18px; line-height: 1.55;
+  color: var(--text);
+  max-width: 560px;
+  margin: 0 0 32px;
+}
+.hero-lede strong { color: var(--ink); font-weight: 700; }
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 28px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border-radius: 999px;
+  font-weight: 700; font-size: 16px;
+  cursor: pointer;
+  border: 0;
+  transition: transform .15s ease, box-shadow .18s ease, background .18s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--warn);
+  color: var(--ink);
+  box-shadow: 0 6px 18px rgba(255, 230, 0, 0.4), 0 0 0 0 rgba(255,230,0,0.5);
+  position: relative;
+}
+.btn-primary::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(255, 230, 0, 0.5);
+  animation: pulse 2.4s ease-out infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 230, 0, 0.7); }
+  70%  { box-shadow: 0 0 0 18px rgba(255, 230, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 230, 0, 0); }
+}
+.btn-primary:hover {
+  background: var(--warn-d);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(255, 230, 0, 0.55);
+}
+.btn-secondary {
+  background: var(--ink);
+  color: var(--white);
+}
+.btn-secondary:hover {
+  background: var(--cobalt);
+  transform: translateY(-2px);
+}
+.btn svg { width: 18px; height: 18px; }
+
+.hero-meta {
+  display: flex; align-items: center; gap: 18px;
+  font-size: 14px; color: var(--mute);
+}
+.hero-meta-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #1FCB6F;
+  box-shadow: 0 0 0 3px rgba(31, 203, 111, 0.18);
+  animation: blip 2s ease-in-out infinite;
+}
+@keyframes blip {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(31, 203, 111, 0.18); }
+  50%      { box-shadow: 0 0 0 7px rgba(31, 203, 111, 0); }
+}
+
+/* hero визуал — карточка цены */
+.price-card {
+  position: relative;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 36px 36px 30px;
+  overflow: hidden;
+  transform: rotate(1.2deg);
+  box-shadow: var(--shadow-lg);
+}
+.price-card::before {
+  content: "";
+  position: absolute;
+  top: -120px; left: -80px;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(47,91,255,0.45) 0%, transparent 65%);
+  pointer-events: none;
+}
+.price-card-tape {
+  position: absolute;
+  top: 22px; right: -34px;
+  background: var(--warn);
+  color: var(--ink);
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  padding: 7px 50px;
+  transform: rotate(38deg);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+.price-card-eyebrow {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--warn);
+  margin-bottom: 18px;
+}
+.price-card-from {
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 4px;
+}
+.price-card-num {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: clamp(56px, 6vw, 84px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--white);
+}
+.price-card-num .ru {
+  font-size: 0.55em;
+  color: var(--warn);
+  vertical-align: 0.18em;
+  margin-left: 4px;
+}
+.price-card-unit {
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 4px;
+}
+.price-card-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin: 22px 0;
+}
+.price-card-list {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; gap: 10px;
+}
+.price-card-list li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: rgba(255,255,255,0.85);
+}
+.price-card-list li svg {
+  width: 16px; height: 16px;
+  color: var(--warn);
+  flex-shrink: 0;
+}
+
+@media (max-width: 920px) {
+  .hero { padding: 32px 0 0; }
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .price-card { transform: rotate(0.5deg); padding: 28px 28px 24px; }
+}
+
+/* =====================================================================
+   ЖЁЛТАЯ ИНДУСТРИАЛЬНАЯ ЛЕНТА (между секциями)
+   ===================================================================== */
+.tape {
+  position: relative;
+  margin-top: 80px;
+  padding: 22px 0;
+  background: var(--warn);
+  color: var(--ink);
+  overflow: hidden;
+  border-top: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
+  transform: rotate(-1.2deg);
+  box-shadow: 0 14px 40px rgba(255, 230, 0, 0.35);
+}
+.tape-track {
+  display: flex; gap: 48px;
+  white-space: nowrap;
+  animation: tape-scroll 28s linear infinite;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.tape-track span {
+  display: inline-flex; align-items: center; gap: 48px;
+}
+.tape-track span::after {
+  content: "";
+  width: 10px; height: 10px;
+  background: var(--ink);
+  border-radius: 50%;
+}
+@keyframes tape-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* =====================================================================
+   TRUST-СЧЁТЧИКИ
+   ===================================================================== */
+.trust {
+  padding: 90px 0 60px;
+  background: var(--white);
+}
+.trust-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px;
+}
+.trust-head h2 {
+  font-size: clamp(28px, 3.4vw, 44px);
+  margin: 14px 0 8px;
+  color: var(--ink);
+}
+.trust-head p { color: var(--text); font-size: 17px; margin: 0; }
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.trust-card {
+  position: relative;
+  padding: 28px 24px;
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  transition: border-color .25s ease, transform .25s ease, background .25s ease;
+  overflow: hidden;
+}
+.trust-card:hover {
+  border-color: var(--cobalt);
+  transform: translateY(-4px);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+.trust-card::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, transparent 50%, var(--warn) 50%);
+}
+.trust-num {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.trust-num .small { font-size: 0.4em; color: var(--cobalt); margin-left: 4px; vertical-align: 0.4em; }
+.trust-num .sign { color: var(--cobalt); }
+.trust-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+@media (max-width: 920px) {
+  .trust { padding: 60px 0 40px; }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .trust-num { font-size: 42px; }
+}
+
+/* =====================================================================
+   КАЛЬКУЛЯТОР
+   ===================================================================== */
+.calc {
+  padding: 80px 0 100px;
+  background: var(--ink);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.calc::before {
+  content: "";
+  position: absolute;
+  bottom: -300px; left: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(47, 91, 255, 0.25) 0%, transparent 65%);
+  pointer-events: none;
+}
+.calc::after {
+  content: "";
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255, 230, 0, 0.10) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.calc-head {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+.calc-head .eyebrow { color: var(--warn); }
+.calc-head h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  margin: 14px 0 10px;
+}
+.calc-head h2 .accent { color: var(--warn); }
+.calc-head p { color: rgba(255,255,255,0.7); font-size: 17px; margin: 0; }
+
+.calc-card {
+  position: relative;
+  background: var(--white);
+  color: var(--ink);
+  border-radius: var(--radius-xl);
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.calc-form { padding: 40px 44px; }
+.calc-form-title {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  margin: 0 0 28px;
+  letter-spacing: -0.01em;
+}
+
+.calc-field { margin-bottom: 24px; }
+.calc-field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mute);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.calc-grade-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.calc-grade-grid input { display: none; }
+.calc-grade-grid label {
+  display: block;
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.calc-grade-grid label:hover { background: var(--paper-2); }
+.calc-grade-grid input:checked + label {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+}
+.calc-grade-name {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  display: block;
+  margin-bottom: 2px;
+}
+.calc-grade-desc {
+  font-size: 12px;
+  opacity: 0.7;
+  display: block;
+}
+
+.calc-volume {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: var(--paper);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: border-color .18s ease;
+}
+.calc-volume:focus-within { border-color: var(--cobalt); }
+.calc-volume-btn {
+  width: 52px;
+  flex-shrink: 0;
+  background: transparent;
+  border: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.calc-volume-btn:hover { background: var(--paper-2); }
+.calc-volume-input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--ink);
+  padding: 14px 0;
+  -moz-appearance: textfield;
+}
+.calc-volume-input::-webkit-outer-spin-button,
+.calc-volume-input::-webkit-inner-spin-button {
+  -webkit-appearance: none; margin: 0;
+}
+.calc-volume-suffix {
+  align-self: center;
+  padding-right: 18px;
+  font-size: 14px;
+  color: var(--mute);
+  font-weight: 600;
+}
+
+.calc-volume-presets {
+  display: flex; gap: 6px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.calc-volume-preset {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.calc-volume-preset:hover {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+}
+
+.calc-toggle {
+  display: flex;
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 4px;
+  position: relative;
+}
+.calc-toggle input { display: none; }
+.calc-toggle label {
+  flex: 1;
+  text-align: center;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all .18s ease;
+  position: relative;
+  z-index: 1;
+}
+.calc-toggle input:checked + label {
+  background: var(--ink);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(11, 20, 55, 0.2);
+}
+
+/* результат */
+.calc-result {
+  background: linear-gradient(160deg, var(--cobalt) 0%, var(--cobalt-d) 100%);
+  color: var(--white);
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.calc-result::before {
+  content: "";
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(255, 230, 0, 0.18) 0%, transparent 65%);
+}
+.calc-result-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 8px;
+}
+.calc-result-total {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+  position: relative;
+  transition: color .25s ease;
+}
+.calc-result-total .ru { font-size: 0.55em; vertical-align: 0.2em; opacity: 0.85; margin-left: 2px;}
+
+.calc-breakdown {
+  display: grid;
+  gap: 12px;
+  font-size: 14px;
+  position: relative;
+}
+.calc-breakdown-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+.calc-breakdown-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.calc-breakdown-row .lbl { color: rgba(255,255,255,0.85); }
+.calc-breakdown-row .val { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.calc-saving {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--warn);
+  color: var(--ink);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 16px;
+  position: relative;
+  animation: saving-in .35s ease;
+}
+.calc-saving.hidden { display: none; }
+.calc-saving svg { width: 20px; height: 20px; flex-shrink: 0; }
+@keyframes saving-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.calc-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 16px 24px;
+  background: var(--warn);
+  color: var(--ink);
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+  transition: transform .15s ease, background .18s ease;
+  position: relative;
+}
+.calc-cta:hover { background: var(--warn-d); transform: translateY(-2px); }
+.calc-cta svg { width: 16px; height: 16px; }
+
+.calc-note {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 920px) {
+  .calc { padding: 60px 0 70px; }
+  .calc-card { grid-template-columns: 1fr; }
+  .calc-form, .calc-result { padding: 28px 24px; }
+}
+
+/* =====================================================================
+   СЕКЦИИ С ФОНОМ
+   ===================================================================== */
+.section { padding: 100px 0; }
+.section-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px;
+}
+.section-head h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  margin: 14px 0 10px;
+  color: var(--ink);
+}
+.section-head h2 .accent { color: var(--cobalt); }
+.section-head h2 .marker {
+  background: var(--warn);
+  padding: 0 8px;
+  margin: 0 -2px;
+  display: inline-block;
+  transform: rotate(-1deg);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.section-head p {
+  color: var(--text); font-size: 17px; margin: 0;
+}
+
+@media (max-width: 920px) { .section { padding: 70px 0; } }
+
+/* =====================================================================
+   УТП
+   ===================================================================== */
+.usp { background: var(--paper); }
+.usp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.usp-card {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  border: 1px solid var(--line);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  overflow: hidden;
+}
+.usp-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: var(--cobalt);
+}
+.usp-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--cobalt), var(--warn));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s ease;
+}
+.usp-card:hover::after { transform: scaleX(1); }
+
+.usp-num {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--paper-2);
+  margin-bottom: 8px;
+  transition: color .25s ease;
+}
+.usp-card:hover .usp-num { color: var(--cobalt); }
+
+.usp-card h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+.usp-card p {
+  font-size: 15px; line-height: 1.6;
+  color: var(--text);
+  margin: 0;
+}
+.usp-card p strong { color: var(--ink); font-weight: 700; }
+
+@media (max-width: 920px) { .usp-grid { grid-template-columns: 1fr; } }
+
+/* =====================================================================
+   ПРАЙС
+   ===================================================================== */
+.price {
+  background: var(--white);
+}
+.price-table {
+  background: var(--paper);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  overflow: hidden;
+}
+.price-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  align-items: center;
+  padding: 20px 16px;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  transition: background .15s ease;
+}
+.price-row:hover { background: rgba(255,255,255,0.6); }
+.price-row:last-child { border-bottom: 0; }
+.price-row.head {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mute);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 10px 16px 14px;
+  border-bottom: 2px solid var(--line-2);
+}
+.price-grade {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.price-grade-desc {
+  display: block;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--mute);
+  margin-top: 2px;
+  letter-spacing: 0;
+}
+.price-cell {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.price-cell.tier-2 {
+  color: var(--cobalt);
+  position: relative;
+}
+.price-cell.tier-2::before {
+  content: "−100 ₽";
+  position: absolute;
+  top: -16px; right: 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--cobalt);
+  background: rgba(47, 91, 255, 0.12);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.price-callout {
+  margin-top: 24px;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.price-callout-badge {
+  background: var(--warn);
+  color: var(--ink);
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+.price-callout-text {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.55;
+  min-width: 250px;
+}
+.price-callout-text strong { color: var(--warn); }
+
+@media (max-width: 700px) {
+  .price-table { padding: 16px; }
+  .price-row {
+    grid-template-columns: 1fr 1fr;
+    padding: 18px 6px;
+    gap: 4px 14px;
+  }
+  .price-row > div:first-child {
+    grid-column: 1 / -1;
+    margin-bottom: 4px;
+  }
+  .price-row.head > div:first-child { display: none; }
+  .price-cell { font-size: 18px; text-align: left; }
+  .price-cell.tier-2::before {
+    position: static;
+    display: inline-block;
+    margin-right: 6px;
+    font-size: 9px;
+    padding: 1px 5px;
+    vertical-align: 2px;
+  }
+  .price-row.head { padding-bottom: 10px; }
+}
+
+/* =====================================================================
+   КАРТА ЗОНЫ ДОСТАВКИ
+   ===================================================================== */
+.delivery {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--white) 100%);
+}
+.delivery-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+}
+.delivery-map {
+  position: relative;
+  aspect-ratio: 1.05;
+  background: var(--ink);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.delivery-map svg { width: 100%; height: 100%; display: block; }
+
+.delivery-info h2 {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3.4vw, 42px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 14px 0 16px;
+  color: var(--ink);
+}
+.delivery-info p {
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+
+.delivery-zones {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.delivery-zone {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  transition: border-color .18s ease, transform .18s ease;
+}
+.delivery-zone:hover { border-color: var(--cobalt); transform: translateX(4px); }
+.delivery-zone-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.delivery-zone-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink);
+}
+.delivery-zone-cities {
+  display: block;
+  font-size: 12px;
+  color: var(--mute);
+  font-weight: 500;
+  margin-top: 2px;
+}
+.delivery-zone-tariff {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--cobalt);
+  white-space: nowrap;
+}
+
+.delivery-foot {
+  font-size: 13px;
+  color: var(--mute);
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.delivery-foot strong { color: var(--ink); font-weight: 700; }
+
+@media (max-width: 920px) {
+  .delivery-grid { grid-template-columns: 1fr; gap: 32px; }
+  .delivery-map { max-width: 480px; margin: 0 auto; }
+}
+
+/* =====================================================================
+   УСЛОВИЯ
+   ===================================================================== */
+.terms { background: var(--ink); color: var(--white); }
+.terms .section-head h2 { color: var(--white); }
+.terms .section-head h2 .marker { background: var(--warn); color: var(--ink); }
+.terms .section-head p { color: rgba(255,255,255,0.7); }
+.terms .eyebrow { color: var(--warn); }
+
+.terms-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.terms-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: border-color .25s ease, transform .25s ease;
+}
+.terms-card:hover {
+  border-color: var(--warn);
+  transform: translateY(-4px);
+}
+.terms-card h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  margin: 0 0 18px;
+  color: var(--white);
+}
+.terms-card ul {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; gap: 12px;
+}
+.terms-card li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15px; line-height: 1.55;
+  color: rgba(255,255,255,0.85);
+}
+.terms-card li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 9px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--warn);
+}
+.terms-card li strong { color: var(--white); font-weight: 700; }
+
+@media (max-width: 760px) { .terms-grid { grid-template-columns: 1fr; } }
+
+/* =====================================================================
+   ШАГИ
+   ===================================================================== */
+.steps { background: var(--white); }
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+}
+.steps-grid::before {
+  content: "";
+  position: absolute;
+  top: 56px;
+  left: 16%; right: 16%;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--line-2) 0 8px, transparent 8px 16px);
+  z-index: 0;
+}
+.step {
+  position: relative;
+  z-index: 1;
+  background: var(--white);
+  text-align: center;
+  padding: 0 16px;
+}
+.step-num {
+  width: 64px; height: 64px;
+  margin: 0 auto 24px;
+  background: var(--ink);
+  color: var(--warn);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  border: 4px solid var(--white);
+  box-shadow: 0 0 0 4px var(--paper);
+  transition: transform .25s ease, background .25s ease, color .25s ease;
+}
+.step:hover .step-num {
+  background: var(--warn);
+  color: var(--ink);
+  transform: scale(1.06);
+}
+.step h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+.step p {
+  font-size: 15px; line-height: 1.55;
+  color: var(--text);
+  margin: 0;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+@media (max-width: 760px) {
+  .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+  .steps-grid::before { display: none; }
+}
+
+/* =====================================================================
+   ФИНАЛЬНЫЙ CTA
+   ===================================================================== */
+.final-cta {
+  position: relative;
+  padding: 100px 0;
+  background: var(--warn);
+  color: var(--ink);
+  overflow: hidden;
+}
+.final-cta::before {
+  content: "БЕТОН · ОМСК · ОТ 5 700 ₽ · БЕТОН · ОМСК · ОТ 5 700 ₽ · ";
+  position: absolute;
+  top: 24px; left: 0; right: 0;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  color: rgba(11, 20, 55, 0.18);
+  pointer-events: none;
+}
+.final-cta::after {
+  content: "ЗВОНИТЕ · ПИШИТЕ · РАССЧИТАЕМ ЗА 1 ДЕНЬ · ЗВОНИТЕ · ПИШИТЕ · ";
+  position: absolute;
+  bottom: 24px; left: 0; right: 0;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  color: rgba(11, 20, 55, 0.18);
+  pointer-events: none;
+}
+
+.final-cta-inner {
+  position: relative;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.final-cta h2 {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: clamp(36px, 5vw, 64px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0 0 20px;
+}
+.final-cta p {
+  font-size: 18px;
+  margin: 0 0 36px;
+  color: rgba(11, 20, 55, 0.7);
+}
+
+.final-cta-actions {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.final-cta .btn-primary {
+  background: var(--ink);
+  color: var(--warn);
+  box-shadow: 0 8px 22px rgba(11, 20, 55, 0.3);
+}
+.final-cta .btn-primary::after { display: none; }
+.final-cta .btn-primary:hover { background: var(--cobalt); color: var(--white); }
+.final-cta .btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+}
+.final-cta .btn-secondary:hover { background: var(--ink); color: var(--warn); }
+
+.final-cta-contacts {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 32px;
+  font-size: 15px;
+}
+.final-cta-contact {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-weight: 600;
+}
+.final-cta-contact svg { width: 18px; height: 18px; flex-shrink: 0; }
+.final-cta-contact a { font-weight: 700; border-bottom: 2px solid rgba(11, 20, 55, 0.3); transition: border-color .15s ease; }
+.final-cta-contact a:hover { border-bottom-color: var(--ink); }
+
+/* =====================================================================
+   FOOTER
+   ===================================================================== */
+.footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.6);
+  padding: 48px 0 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+.footer-brand {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-bottom: 16px;
+  color: var(--white);
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+.footer-brand-mark { width: 36px; height: 36px; }
+.footer-about { font-size: 14px; line-height: 1.55; max-width: 380px; }
+
+.footer-col h4 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.5);
+  margin: 0 0 14px;
+}
+.footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.footer-col li { font-size: 14px; }
+.footer-col strong { color: var(--white); font-weight: 700; }
+.footer-col .lbl { display: block; color: rgba(255,255,255,0.45); font-size: 11px; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 24px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  font-size: 13px;
+}
+
+@media (max-width: 760px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+/* =====================================================================
+   STICKY MOBILE CTA
+   ===================================================================== */
+.sticky-mob {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  display: none;
+  padding: 12px 16px;
+  background: var(--ink);
+  border-top: 3px solid var(--warn);
+  gap: 10px;
+}
+.sticky-mob a {
+  flex: 1;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.sticky-mob .call { background: var(--warn); color: var(--ink); }
+.sticky-mob .calc-link { background: var(--cobalt); color: var(--white); }
+.sticky-mob svg { width: 16px; height: 16px; }
+
+@media (max-width: 760px) {
+  .sticky-mob { display: flex; }
+  body { padding-bottom: 80px; }
+}
+
+/* =====================================================================
+   АНИМАЦИИ ПОЯВЛЕНИЯ
+   ===================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal[data-delay="1"] { transition-delay: .08s; }
+.reveal[data-delay="2"] { transition-delay: .16s; }
+.reveal[data-delay="3"] { transition-delay: .24s; }
+.reveal[data-delay="4"] { transition-delay: .32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .tape-track { animation: none; }
+  .btn-primary::after { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- =================================================================
+     ШАПКА
+     ================================================================= -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="26" y="6"  width="12" height="52" rx="2" fill="#0B1437"/>
+        <rect x="6"  y="26" width="52" height="12" rx="2" fill="#2F5BFF"/>
+        <rect x="26" y="26" width="12" height="12"          fill="#1F47E0"/>
+      </svg>
+      <div>
+        <div class="brand-name">ТехБазис</div>
+        <div class="brand-sub">Производство товарного бетона · Омск</div>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="#calc">Калькулятор</a>
+      <a href="#price">Прайс</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a href="tel:+79620546601" class="header-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      +7 (962) 054-66-01
+    </a>
+  </div>
+</header>
+
+<!-- =================================================================
+     HERO
+     ================================================================= -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow reveal in">Коммерческое предложение · Омск</span>
+        <h1 class="hero-h1 display reveal" data-delay="1">
+          Бетон от<br>производителя&nbsp;— <span class="marker">от 5 700 ₽/м³</span>
+        </h1>
+        <p class="hero-lede reveal" data-delay="2">
+          Свой завод, собственный парк миксеров и отгрузка <strong>7 дней в неделю</strong>.
+          Паспорт качества на каждый рейс. Прямая работа без перекупщиков и срывов сроков.
+        </p>
+        <div class="hero-actions reveal" data-delay="3">
+          <a href="#calc" class="btn btn-primary">
+            Рассчитать стоимость
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:+79620546601" class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Позвонить
+          </a>
+        </div>
+        <div class="hero-meta reveal" data-delay="4">
+          <span class="hero-meta-dot"></span>
+          Принимаем заявки · отгрузка с завтра · цены актуальны до&nbsp;31.05.2026
+        </div>
+      </div>
+
+      <div class="reveal" data-delay="2">
+        <div class="price-card">
+          <div class="price-card-tape">ОТ ПРОИЗВОДИТЕЛЯ</div>
+          <div class="price-card-eyebrow">B 15 (M 200) · цена за 1 м³</div>
+          <div class="price-card-from">от</div>
+          <div class="price-card-num">5 700<span class="ru">₽</span></div>
+          <div class="price-card-unit">за куб при объёме от 200 м³</div>
+          <div class="price-card-divider"></div>
+          <ul class="price-card-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Паспорт качества на каждый рейс
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Отгрузка 7 дней в неделю
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Отсрочка для надёжных контрагентов
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     ИНДУСТРИАЛЬНАЯ ЛЕНТА
+     ================================================================= -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span>Бетон от производителя</span>
+    <span>Паспорт качества</span>
+    <span>7 дней в неделю</span>
+    <span>−100 ₽/м³ от 200 м³</span>
+    <span>Доставка миксерами 5–6 м³</span>
+    <span>Бетон от производителя</span>
+    <span>Паспорт качества</span>
+    <span>7 дней в неделю</span>
+    <span>−100 ₽/м³ от 200 м³</span>
+    <span>Доставка миксерами 5–6 м³</span>
+  </div>
+</div>
+
+<!-- =================================================================
+     TRUST-СЧЁТЧИКИ
+     ================================================================= -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-head">
+      <span class="eyebrow reveal in">Цифры, которые говорят сами за себя</span>
+      <h2 class="display-2 reveal" data-delay="1">Строим работу на конкретике</h2>
+      <p class="reveal" data-delay="2">Никаких «индивидуальных условий» вместо цен. Всё прозрачно с первого касания.</p>
+    </div>
+
+    <div class="trust-grid">
+      <div class="trust-card reveal" data-delay="1">
+        <div class="trust-num"><span class="counter" data-target="4">0</span></div>
+        <div class="trust-label">Марки бетона<br>в наличии · от B15 до B30</div>
+      </div>
+      <div class="trust-card reveal" data-delay="2">
+        <div class="trust-num"><span class="counter" data-target="7">0</span><span class="small">дн/нед</span></div>
+        <div class="trust-label">Отгрузка<br>включая выходные</div>
+      </div>
+      <div class="trust-card reveal" data-delay="3">
+        <div class="trust-num"><span class="counter" data-target="6">0</span><span class="small">м³</span></div>
+        <div class="trust-label">Собственные<br>миксеры АБС 5–6 м³</div>
+      </div>
+      <div class="trust-card reveal" data-delay="4">
+        <div class="trust-num"><span class="sign">−</span><span class="counter" data-target="100">0</span><span class="small">₽/м³</span></div>
+        <div class="trust-label">Скидка от&nbsp;объёма<br>при заказе от 200 м³</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     КАЛЬКУЛЯТОР
+     ================================================================= -->
+<section class="calc" id="calc">
+  <div class="container">
+    <div class="calc-head">
+      <span class="eyebrow">Калькулятор стоимости</span>
+      <h2 class="display reveal" data-delay="1">
+        Узнайте цену объекта <span class="accent">за 30 секунд</span>
+      </h2>
+      <p class="reveal" data-delay="2">Выберите марку, укажите объём — получите точную сумму с доставкой и скидкой&nbsp;за&nbsp;объём.</p>
+    </div>
+
+    <div class="calc-card reveal" data-delay="2">
+      <div class="calc-form">
+        <div class="calc-form-title">Параметры заказа</div>
+
+        <!-- Марка -->
+        <div class="calc-field">
+          <label class="calc-field-label">Марка бетона</label>
+          <div class="calc-grade-grid" id="gradeGrid">
+            <input type="radio" name="grade" id="g1" value="b15" data-low="5800" data-high="5700" checked>
+            <label for="g1">
+              <span class="calc-grade-name">B 15 (M 200)</span>
+              <span class="calc-grade-desc">Подбетонка, основания</span>
+            </label>
+
+            <input type="radio" name="grade" id="g2" value="b25w" data-low="6500" data-high="6400">
+            <label for="g2">
+              <span class="calc-grade-name">B 25 W 10</span>
+              <span class="calc-grade-desc">Фундаменты, цоколи</span>
+            </label>
+
+            <input type="radio" name="grade" id="g3" value="b25f" data-low="6750" data-high="6650">
+            <label for="g3">
+              <span class="calc-grade-name">B 25 F 150</span>
+              <span class="calc-grade-desc">Морозостойкий</span>
+            </label>
+
+            <input type="radio" name="grade" id="g4" value="b30" data-low="6900" data-high="6800">
+            <label for="g4">
+              <span class="calc-grade-name">B 30 (M 400)</span>
+              <span class="calc-grade-desc">Монолит, перекрытия</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Объём -->
+        <div class="calc-field">
+          <label class="calc-field-label" for="volumeInput">Объём заказа</label>
+          <div class="calc-volume">
+            <button type="button" class="calc-volume-btn" data-step="-10" aria-label="Уменьшить на 10">−</button>
+            <input type="number" id="volumeInput" class="calc-volume-input" value="50" min="1" max="9999" step="1">
+            <span class="calc-volume-suffix">м³</span>
+            <button type="button" class="calc-volume-btn" data-step="10" aria-label="Увеличить на 10">+</button>
+          </div>
+          <div class="calc-volume-presets">
+            <button type="button" class="calc-volume-preset" data-set="20">20 м³</button>
+            <button type="button" class="calc-volume-preset" data-set="50">50 м³</button>
+            <button type="button" class="calc-volume-preset" data-set="100">100 м³</button>
+            <button type="button" class="calc-volume-preset" data-set="200">200 м³</button>
+            <button type="button" class="calc-volume-preset" data-set="500">500 м³</button>
+          </div>
+        </div>
+
+        <!-- Доставка -->
+        <div class="calc-field">
+          <label class="calc-field-label">Доставка</label>
+          <div class="calc-toggle">
+            <input type="radio" name="delivery" id="d1" value="yes" checked>
+            <label for="d1">С доставкой · 800 ₽/м³</label>
+            <input type="radio" name="delivery" id="d2" value="no">
+            <label for="d2">Самовывоз</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-result">
+        <div>
+          <div class="calc-result-eyebrow">Итоговая стоимость</div>
+          <div class="calc-result-total" id="totalSum">0<span class="ru">₽</span></div>
+
+          <div class="calc-breakdown">
+            <div class="calc-breakdown-row">
+              <span class="lbl">Бетон <span id="brkGrade">B 15</span> · <span id="brkVolume">50</span> м³ × <span id="brkPrice">5 800</span> ₽</span>
+              <span class="val" id="brkConcrete">0 ₽</span>
+            </div>
+            <div class="calc-breakdown-row" id="brkDeliveryRow">
+              <span class="lbl">Доставка · 800 ₽ × <span id="brkDelVol">50</span> м³</span>
+              <span class="val" id="brkDelivery">0 ₽</span>
+            </div>
+          </div>
+
+          <div class="calc-saving hidden" id="savingBlock">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>Вы экономите <span id="savingSum">0 ₽</span> на объёме от 200 м³</span>
+          </div>
+        </div>
+
+        <a href="tel:+79620546601" class="calc-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Заказать с этой ценой
+        </a>
+        <div class="calc-note">или напишите — пришлём счёт за 1 рабочий день</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     УТП
+     ================================================================= -->
+<section class="section usp">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal in">Почему выбирают нас</span>
+      <h2 class="display-2 reveal" data-delay="1">Три причины, по которым<br>с нами не срываются сроки</h2>
+    </div>
+    <div class="usp-grid">
+      <div class="usp-card reveal" data-delay="1">
+        <div class="usp-num">01</div>
+        <h3>Цена с производства</h3>
+        <p>Прямые поставки с нашего завода — <strong>без посредников и комиссионных наценок.</strong> От 200 м³ — −100 ₽ с куба по любой марке. Цена в счёте равна цене в КП.</p>
+      </div>
+      <div class="usp-card reveal" data-delay="2">
+        <div class="usp-num">02</div>
+        <h3>Паспорт на каждый рейс</h3>
+        <p>Лабораторный контроль входящего сырья и готовой смеси. На каждую партию — <strong>паспорт качества</strong> с маркой, классом и подвижностью. Документы для&nbsp;стройконтроля — в комплекте.</p>
+      </div>
+      <div class="usp-card reveal" data-delay="3">
+        <div class="usp-num">03</div>
+        <h3>График без срывов</h3>
+        <p>Подаём миксеры под темп заливки, согласуем интервал между рейсами. Принимаем заявки <strong>7 дней в неделю</strong>, включая выходные. Объект встал — миксеры не выезжают пустыми.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     ПРАЙС
+     ================================================================= -->
+<section class="section price" id="price">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal in">Полный прайс</span>
+      <h2 class="display-2 reveal" data-delay="1">
+        Цены за 1 м³ <span class="marker">при предоплате</span>
+      </h2>
+      <p class="reveal" data-delay="2">Доставка до объекта рассчитывается отдельно — 800 ₽/м³ (в т. ч. НДС 20%).</p>
+    </div>
+
+    <div class="price-table reveal" data-delay="1">
+      <div class="price-row head">
+        <div class="price-grade-col">Марка / класс</div>
+        <div style="text-align:right;">До 200 м³</div>
+        <div style="text-align:right;">Свыше 200 м³</div>
+      </div>
+
+      <div class="price-row">
+        <div>
+          <div class="price-grade">B 15 (M 200)</div>
+          <span class="price-grade-desc">Тощий бетон, подбетонка, основания</span>
+        </div>
+        <div class="price-cell">5 800 ₽</div>
+        <div class="price-cell tier-2">5 700 ₽</div>
+      </div>
+
+      <div class="price-row">
+        <div>
+          <div class="price-grade">B 25 (M 350) W 10</div>
+          <span class="price-grade-desc">Водонепроницаемый — фундаменты, цоколи</span>
+        </div>
+        <div class="price-cell">6 500 ₽</div>
+        <div class="price-cell tier-2">6 400 ₽</div>
+      </div>
+
+      <div class="price-row">
+        <div>
+          <div class="price-grade">B 25 (M 350) F 150</div>
+          <span class="price-grade-desc">Морозостойкий — наружные конструкции</span>
+        </div>
+        <div class="price-cell">6 750 ₽</div>
+        <div class="price-cell tier-2">6 650 ₽</div>
+      </div>
+
+      <div class="price-row">
+        <div>
+          <div class="price-grade">B 30 (M 400) W 8</div>
+          <span class="price-grade-desc">Несущие конструкции, монолит, перекрытия</span>
+        </div>
+        <div class="price-cell">6 900 ₽</div>
+        <div class="price-cell tier-2">6 800 ₽</div>
+      </div>
+    </div>
+
+    <div class="price-callout reveal" data-delay="2">
+      <span class="price-callout-badge">Выгода</span>
+      <span class="price-callout-text">
+        От 200 м³ по любой марке — экономия <strong>100 ₽ с каждого куба</strong>.
+        На объёме 500 м³ это уже <strong>50 000 ₽</strong> к чистой марже проекта.
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     ЗОНА ДОСТАВКИ
+     ================================================================= -->
+<section class="section delivery" id="delivery">
+  <div class="container">
+    <div class="delivery-grid">
+      <div class="delivery-map reveal" data-delay="1">
+        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-label="Карта зоны доставки">
+          <defs>
+            <radialGradient id="rad" cx="50%" cy="50%">
+              <stop offset="0%" stop-color="#2F5BFF" stop-opacity="0.45"/>
+              <stop offset="100%" stop-color="#2F5BFF" stop-opacity="0"/>
+            </radialGradient>
+            <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+              <path d="M36 0H0v36" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            </pattern>
+          </defs>
+
+          <!-- сетка фон -->
+          <rect width="500" height="500" fill="url(#grid)"/>
+
+          <!-- абстрактные линии "автодорог" -->
+          <path d="M-20 280 Q 180 220, 250 250 T 540 220" stroke="rgba(255,255,255,0.10)" stroke-width="2" fill="none" stroke-dasharray="2 6"/>
+          <path d="M250 -20 Q 220 200, 250 250 T 280 540" stroke="rgba(255,255,255,0.10)" stroke-width="2" fill="none" stroke-dasharray="2 6"/>
+          <path d="M-20 100 Q 200 230, 250 250 T 540 380" stroke="rgba(255,255,255,0.10)" stroke-width="2" fill="none" stroke-dasharray="2 6"/>
+
+          <!-- зоны доставки -->
+          <circle cx="250" cy="250" r="180" fill="none" stroke="rgba(255,230,0,0.20)" stroke-width="1" stroke-dasharray="3 5"/>
+          <circle cx="250" cy="250" r="120" fill="none" stroke="rgba(255,230,0,0.30)" stroke-width="1" stroke-dasharray="3 5"/>
+          <circle cx="250" cy="250" r="60"  fill="url(#rad)"/>
+          <circle cx="250" cy="250" r="60"  fill="none" stroke="rgba(47,91,255,0.6)" stroke-width="1.5"/>
+
+          <!-- центр Омска -->
+          <circle cx="250" cy="250" r="9"  fill="#FFE600"/>
+          <circle cx="250" cy="250" r="9"  fill="none" stroke="#0B1437" stroke-width="2"/>
+          <text x="250" y="240" text-anchor="middle" font-family="Unbounded, sans-serif" font-weight="700" font-size="13" fill="#FFE600">ОМСК</text>
+          <text x="250" y="276" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="600" font-size="10" fill="rgba(255,255,255,0.6)">завод-производитель</text>
+
+          <!-- города/точки доставки -->
+          <g class="city">
+            <circle cx="365" cy="180" r="5" fill="#2F5BFF"/>
+            <circle cx="365" cy="180" r="11" fill="none" stroke="#2F5BFF" stroke-opacity="0.4">
+              <animate attributeName="r" values="5;13;5" dur="2.6s" repeatCount="indefinite"/>
+              <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="2.6s" repeatCount="indefinite"/>
+            </circle>
+            <text x="375" y="184" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Калачинск</text>
+          </g>
+
+          <g class="city">
+            <circle cx="135" cy="160" r="5" fill="#2F5BFF"/>
+            <circle cx="135" cy="160" r="11" fill="none" stroke="#2F5BFF" stroke-opacity="0.4">
+              <animate attributeName="r" values="5;13;5" dur="2.4s" repeatCount="indefinite" begin="0.3s"/>
+              <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="2.4s" repeatCount="indefinite" begin="0.3s"/>
+            </circle>
+            <text x="125" y="164" text-anchor="end" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Тюкалинск</text>
+          </g>
+
+          <g class="city">
+            <circle cx="180" cy="370" r="5" fill="#2F5BFF"/>
+            <circle cx="180" cy="370" r="11" fill="none" stroke="#2F5BFF" stroke-opacity="0.4">
+              <animate attributeName="r" values="5;13;5" dur="2.8s" repeatCount="indefinite" begin="0.6s"/>
+              <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="2.8s" repeatCount="indefinite" begin="0.6s"/>
+            </circle>
+            <text x="170" y="374" text-anchor="end" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Исилькуль</text>
+          </g>
+
+          <g class="city">
+            <circle cx="380" cy="340" r="5" fill="#2F5BFF"/>
+            <circle cx="380" cy="340" r="11" fill="none" stroke="#2F5BFF" stroke-opacity="0.4">
+              <animate attributeName="r" values="5;13;5" dur="2.5s" repeatCount="indefinite" begin="0.9s"/>
+              <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite" begin="0.9s"/>
+            </circle>
+            <text x="390" y="344" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Большеречье</text>
+          </g>
+
+          <g class="city">
+            <circle cx="290" cy="100" r="5" fill="#2F5BFF"/>
+            <circle cx="290" cy="100" r="11" fill="none" stroke="#2F5BFF" stroke-opacity="0.4">
+              <animate attributeName="r" values="5;13;5" dur="2.7s" repeatCount="indefinite" begin="1.2s"/>
+              <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="2.7s" repeatCount="indefinite" begin="1.2s"/>
+            </circle>
+            <text x="300" y="104" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Тара</text>
+          </g>
+
+          <!-- подписи зон -->
+          <text x="250" y="345" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="10" fill="rgba(255,230,0,0.7)" letter-spacing="1.5">25 КМ</text>
+          <text x="250" y="405" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="10" fill="rgba(255,230,0,0.5)" letter-spacing="1.5">50 КМ</text>
+          <text x="250" y="465" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="10" fill="rgba(255,230,0,0.35)" letter-spacing="1.5">100+ КМ</text>
+        </svg>
+      </div>
+
+      <div class="delivery-info">
+        <span class="eyebrow reveal in">География доставки</span>
+        <h2 class="reveal" data-delay="1">Возим бетон по&nbsp;Омску<br>и всей области</h2>
+        <p class="reveal" data-delay="2">
+          Завод в Омске, миксеры АБС 5–6 м³ выезжают по заявке без выходных.
+          Доставка считается по 800 ₽/м³ независимо от плеча в пределах области.
+        </p>
+
+        <div class="delivery-zones">
+          <div class="delivery-zone reveal" data-delay="2">
+            <span class="delivery-zone-dot" style="background:#FFE600;"></span>
+            <div>
+              <div class="delivery-zone-name">Омск, в черте города</div>
+              <span class="delivery-zone-cities">Все районы · подача миксера 1–2 часа</span>
+            </div>
+            <span class="delivery-zone-tariff">800 ₽/м³</span>
+          </div>
+          <div class="delivery-zone reveal" data-delay="3">
+            <span class="delivery-zone-dot" style="background:#2F5BFF;"></span>
+            <div>
+              <div class="delivery-zone-name">Пригород · до 50 км</div>
+              <span class="delivery-zone-cities">Омский, Любинский, Кормиловский районы</span>
+            </div>
+            <span class="delivery-zone-tariff">800 ₽/м³</span>
+          </div>
+          <div class="delivery-zone reveal" data-delay="4">
+            <span class="delivery-zone-dot" style="background:#5B7FFF;"></span>
+            <div>
+              <div class="delivery-zone-name">Область · 50–150 км</div>
+              <span class="delivery-zone-cities">Калачинск, Тюкалинск, Исилькуль, Большеречье, Тара</span>
+            </div>
+            <span class="delivery-zone-tariff">от 800 ₽/м³</span>
+          </div>
+        </div>
+
+        <div class="delivery-foot">
+          <strong>Уехали дальше?</strong> Согласуем индивидуально — позвоните, рассчитаем за 1 день.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     УСЛОВИЯ
+     ================================================================= -->
+<section class="section terms">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Условия поставки</span>
+      <h2 class="display-2 reveal" data-delay="1">Только то, что влияет<br>на сумму договора</h2>
+      <p class="reveal" data-delay="2">Без мелкого шрифта, без сюрпризов в накладной.</p>
+    </div>
+
+    <div class="terms-grid">
+      <div class="terms-card reveal" data-delay="1">
+        <h3>Логистика и доставка</h3>
+        <ul>
+          <li>Поставка по заявке покупателя, <strong>без выходных</strong></li>
+          <li>Объём миксера (АБС): <strong>5 или 6 м³</strong>, всегда грузим максимально</li>
+          <li>Если заказ меньше объёма АБС — доставка считается <strong>по полному миксеру</strong></li>
+          <li>Стоимость доставки до объекта — <strong>800 ₽/м³</strong> (в т. ч. НДС 20%)</li>
+        </ul>
+      </div>
+      <div class="terms-card reveal" data-delay="2">
+        <h3>Оплата и документы</h3>
+        <ul>
+          <li><strong>Предоплата</strong> — стандартное условие, цена прайса действует при предоплате</li>
+          <li><strong>Отсрочка или рассрочка</strong> — для надёжных контрагентов, по индивидуальному согласованию</li>
+          <li>На каждый рейс: <strong>счёт, УПД и паспорт качества</strong> партии</li>
+          <li>Документы готовим заранее — без задержек на въезде на объект</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     ШАГИ
+     ================================================================= -->
+<section class="section steps">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal in">Как оформить заказ</span>
+      <h2 class="display-2 reveal" data-delay="1">Три шага<br>от заявки до миксера на&nbsp;объекте</h2>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step reveal" data-delay="1">
+        <div class="step-num">1</div>
+        <h3>Заявка</h3>
+        <p>Сообщаете марку, объём, адрес объекта, дату и время подачи. По телефону, e-mail или через менеджера.</p>
+      </div>
+      <div class="step reveal" data-delay="2">
+        <div class="step-num">2</div>
+        <h3>Счёт и график</h3>
+        <p>Согласовываем итоговую стоимость с доставкой и закрепляем график подачи миксеров под темп заливки.</p>
+      </div>
+      <div class="step reveal" data-delay="3">
+        <div class="step-num">3</div>
+        <h3>Поставка</h3>
+        <p>Отгрузка по графику. На каждый рейс — накладная и паспорт качества партии. Без срывов сроков.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     ФИНАЛЬНЫЙ CTA
+     ================================================================= -->
+<section class="final-cta" id="contacts">
+  <div class="container">
+    <div class="final-cta-inner">
+      <h2 class="reveal" data-delay="1">Готовы посчитать ваш&nbsp;объект?</h2>
+      <p class="reveal" data-delay="2">Расчёт под объём проекта присылаем в день обращения.<br>Цена держится до конца согласованного объёма поставки.</p>
+
+      <div class="final-cta-actions reveal" data-delay="3">
+        <a href="tel:+79620546601" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +7 (962) 054-66-01
+        </a>
+        <a href="mailto:ipzhbankov@yandex.ru" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          Написать на e-mail
+        </a>
+      </div>
+
+      <div class="final-cta-contacts reveal" data-delay="4">
+        <span class="final-cta-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+          Менеджер: <a href="tel:+79620546601">Жбанков Алексей Дмитриевич</a>
+        </span>
+        <span class="final-cta-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          <a href="mailto:ipzhbankov@yandex.ru">ipzhbankov@yandex.ru</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     FOOTER
+     ================================================================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <svg class="footer-brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="26" y="6"  width="12" height="52" rx="2" fill="#FFFFFF"/>
+            <rect x="6"  y="26" width="52" height="12" rx="2" fill="#2F5BFF"/>
+            <rect x="26" y="26" width="12" height="12"          fill="#5B7FFF"/>
+          </svg>
+          ТехБазис
+        </div>
+        <p class="footer-about">Производство и доставка товарного бетона по&nbsp;Омску и&nbsp;Омской области. Прямые поставки с завода без посредников. Паспорт качества на каждый рейс.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <ul>
+          <li><span class="lbl">Телефон</span><strong><a href="tel:+79620546601">+7 (962) 054-66-01</a></strong></li>
+          <li><span class="lbl">E-mail</span><strong><a href="mailto:ipzhbankov@yandex.ru">ipzhbankov@yandex.ru</a></strong></li>
+          <li><span class="lbl">Менеджер</span><strong>Жбанков Алексей Дмитриевич</strong></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Реквизиты</h4>
+        <ul>
+          <li><span class="lbl">Организация</span><strong>ООО «ТехБазис»</strong></li>
+          <li><span class="lbl">ИНН / ОГРН</span><strong>5504151086 / 1175543034237</strong></li>
+          <li><span class="lbl">Город</span><strong>Омск</strong></li>
+          <li><span class="lbl">Руководитель</span><strong>Бойчук В. С.</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 ООО «ТехБазис» · Все права защищены</span>
+      <span>Цены актуальны до 31.05.2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- =================================================================
+     STICKY CTA для мобильного
+     ================================================================= -->
+<div class="sticky-mob">
+  <a href="tel:+79620546601" class="call">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Позвонить
+  </a>
+  <a href="#calc" class="calc-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h2M8 18h2M14 14h2M14 18h2"/></svg>
+    Калькулятор
+  </a>
+</div>
+
+<!-- =================================================================
+     JAVASCRIPT
+     ================================================================= -->
+<script>
+(function () {
+  'use strict';
+
+  // ==============================================================
+  // 1. ИНТЕРСЕКТ-ОБСЕРВЕР: появление элементов и счётчики
+  // ==============================================================
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const reveals  = document.querySelectorAll('.reveal:not(.in)');
+  const counters = document.querySelectorAll('.counter');
+
+  if ('IntersectionObserver' in window && !reduced) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+
+        if (el.classList.contains('reveal')) {
+          el.classList.add('in');
+        }
+        if (el.classList.contains('counter')) {
+          animateCounter(el);
+        }
+        io.unobserve(el);
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => io.observe(el));
+    counters.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('in'));
+    counters.forEach(el => { el.textContent = el.dataset.target; });
+  }
+
+  function animateCounter(el) {
+    const target = parseFloat(el.dataset.target);
+    const duration = 1400;
+    const start = performance.now();
+
+    function frame(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+      const value = target * eased;
+
+      // целочисленные значения форматируем красиво
+      el.textContent = Number.isInteger(target)
+        ? Math.round(value).toLocaleString('ru-RU')
+        : value.toFixed(1);
+
+      if (t < 1) requestAnimationFrame(frame);
+      else el.textContent = target.toLocaleString('ru-RU');
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ==============================================================
+  // 2. КАЛЬКУЛЯТОР
+  // ==============================================================
+  const grades   = document.querySelectorAll('input[name="grade"]');
+  const delivery = document.querySelectorAll('input[name="delivery"]');
+  const volInput = document.getElementById('volumeInput');
+  const volBtns  = document.querySelectorAll('.calc-volume-btn');
+  const presets  = document.querySelectorAll('.calc-volume-preset');
+
+  const elTotal     = document.getElementById('totalSum');
+  const elBrkGrade  = document.getElementById('brkGrade');
+  const elBrkVolume = document.getElementById('brkVolume');
+  const elBrkPrice  = document.getElementById('brkPrice');
+  const elBrkConcr  = document.getElementById('brkConcrete');
+  const elBrkDelVol = document.getElementById('brkDelVol');
+  const elBrkDel    = document.getElementById('brkDelivery');
+  const elBrkDelRow = document.getElementById('brkDeliveryRow');
+  const elSaving    = document.getElementById('savingBlock');
+  const elSavingSum = document.getElementById('savingSum');
+
+  function fmtRub(n) {
+    return Math.round(n).toLocaleString('ru-RU') + ' ₽';
+  }
+  function fmtNum(n) {
+    return Math.round(n).toLocaleString('ru-RU');
+  }
+
+  function calc() {
+    const gradeEl = document.querySelector('input[name="grade"]:checked');
+    const delEl   = document.querySelector('input[name="delivery"]:checked');
+    let volume = parseInt(volInput.value, 10);
+    if (isNaN(volume) || volume < 1) volume = 1;
+    if (volume > 9999) volume = 9999;
+
+    // минимальный объем для расчёта доставки = 5 м³ (полный миксер)
+    const billedVolume = Math.max(volume, 5);
+
+    const isHigh = volume >= 200;
+    const pricePerM3 = parseFloat(isHigh ? gradeEl.dataset.high : gradeEl.dataset.low);
+    const concreteCost = pricePerM3 * volume;
+    const deliveryCost = (delEl.value === 'yes') ? 800 * billedVolume : 0;
+    const total = concreteCost + deliveryCost;
+
+    // экономия от объёма от 200 м³
+    const savings = isHigh ? 100 * volume : 0;
+
+    // обновляем DOM
+    const gradeName = gradeEl.parentElement.querySelector('label[for="' + gradeEl.id + '"] .calc-grade-name')?.textContent
+      || gradeEl.nextElementSibling?.querySelector('.calc-grade-name')?.textContent
+      || gradeEl.value;
+
+    elBrkGrade.textContent  = gradeName;
+    elBrkVolume.textContent = volume;
+    elBrkPrice.textContent  = fmtNum(pricePerM3);
+    elBrkConcr.textContent  = fmtRub(concreteCost);
+
+    if (delEl.value === 'yes') {
+      elBrkDelRow.style.display = '';
+      elBrkDelVol.textContent = billedVolume;
+      let delLabel = fmtRub(deliveryCost);
+      if (billedVolume !== volume) delLabel += ' (мин. 5 м³)';
+      elBrkDel.textContent = delLabel;
+    } else {
+      elBrkDelRow.style.display = 'none';
+    }
+
+    // плавный апдейт итога
+    animateValue(elTotal, total);
+
+    // экономия
+    if (savings > 0) {
+      elSaving.classList.remove('hidden');
+      elSavingSum.textContent = fmtRub(savings);
+    } else {
+      elSaving.classList.add('hidden');
+    }
+  }
+
+  let totalAnimRAF;
+  function animateValue(target, value) {
+    const current = parseInt((target.dataset.value || '0'), 10);
+    const start   = current;
+    const delta   = value - start;
+    const duration = 380;
+    const t0 = performance.now();
+    cancelAnimationFrame(totalAnimRAF);
+
+    function frame(now) {
+      const t = Math.min(1, (now - t0) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const v = start + delta * eased;
+      target.innerHTML = fmtNum(v) + '<span class="ru">₽</span>';
+      if (t < 1) totalAnimRAF = requestAnimationFrame(frame);
+      else {
+        target.dataset.value = value;
+        target.innerHTML = fmtNum(value) + '<span class="ru">₽</span>';
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // listeners
+  grades.forEach(el => el.addEventListener('change', calc));
+  delivery.forEach(el => el.addEventListener('change', calc));
+  volInput.addEventListener('input', calc);
+
+  volBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const step = parseInt(btn.dataset.step, 10);
+      let v = parseInt(volInput.value, 10) || 0;
+      v = Math.max(1, v + step);
+      volInput.value = v;
+      calc();
+    });
+  });
+
+  presets.forEach(btn => {
+    btn.addEventListener('click', () => {
+      volInput.value = btn.dataset.set;
+      calc();
+    });
+  });
+
+  // первый расчёт
+  calc();
+
+  // ==============================================================
+  // 3. SMOOTH-SCROLL для якорей с учётом sticky-шапки
+  // ==============================================================
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length < 2) return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
