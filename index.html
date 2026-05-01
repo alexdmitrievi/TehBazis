@@ -428,8 +428,11 @@ button, input, select, textarea {
 }
 .tape-track {
   display: flex; gap: 48px;
+  width: max-content;
   white-space: nowrap;
   animation: tape-scroll 28s linear infinite;
+  will-change: transform;
+  transform: translate3d(0,0,0); 
   font-family: 'Unbounded', sans-serif;
   font-weight: 700;
   font-size: 18px;
@@ -446,8 +449,8 @@ button, input, select, textarea {
   border-radius: 50%;
 }
 @keyframes tape-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
 }
 
 /* =====================================================================
@@ -1532,7 +1535,7 @@ button, input, select, textarea {
 
   /* индустриальная лента — тоньше */
   .tape { padding: 16px 0; margin-top: 56px; }
-  .tape-track { font-size: 14px; gap: 32px; animation-duration: 14s; }
+  .tape-track { font-size: 14px; gap: 32px; animation-duration: 8s; }
   .tape-track span::after { width: 6px; height: 6px; }
 
   /* trust — числа поменьше, padding меньше */
